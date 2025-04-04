@@ -12,13 +12,6 @@ target/
 # Maven wrapper
 .mvn/
 
-# Docker
-docker-compose.override.yml
-Dockerfile
-**/docker-compose.override.yml
-**/Dockerfile
-.docker/
-
 # Arquivos de configuração local
 .env
 .gitattributes

@@ -36,6 +36,7 @@ class UserControllerTest extends AbstractIntegrationTest {
     mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     mapper.findAndRegisterModules();
     startEntities();
+    resetDatabase();
   }
 
   @Test

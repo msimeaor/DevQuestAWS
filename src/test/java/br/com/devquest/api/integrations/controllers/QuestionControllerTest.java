@@ -34,12 +34,13 @@ class QuestionControllerTest extends AbstractIntegrationTest {
   private static AccountCredentialsDTOTest accountCredentialsDTO;
   private static String userAccessToken = "Bearer ";
 
-  @BeforeEach
-  void setUp() {
+  @BeforeAll
+  static void setUp() {
     mapper = new ObjectMapper();
     mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
     mapper.findAndRegisterModules();
     startEntities();
+    resetDatabase();
   }
 
   @Test

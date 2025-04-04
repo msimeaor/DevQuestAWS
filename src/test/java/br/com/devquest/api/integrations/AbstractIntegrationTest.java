@@ -1,5 +1,6 @@
 package br.com.devquest.api.integrations;
 
+import org.flywaydb.core.Flyway;
 import org.springframework.context.ApplicationContextInitializer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -19,6 +20,14 @@ public class AbstractIntegrationTest {
 
     private static void startContainers() {
       Startables.deepStart(Stream.of(mysql)).join();
+      runFlywayMigrations();
+    }
+
+    private static void runFlywayMigrations() {
+      Flyway flyway = Flyway.configure()
+              .dataSource(mysql.getJdbcUrl(), mysql.getUsername(), mysql.getPassword())
+              .load();
+      flyway.migrate();
     }
 
     private static Map<String, String> createConnectionConfiguration() {
@@ -38,6 +47,20 @@ public class AbstractIntegrationTest {
               (Map) createConnectionConfiguration());
       environment.getPropertySources().addFirst(testcontainers);
     }
+  }
+
+  protected static void resetDatabase() {
+    Flyway flyway = Flyway.configure()
+      .dataSource(
+        Initializer.mysql.getJdbcUrl(),
+        Initializer.mysql.getUsername(),
+        Initializer.mysql.getPassword()
+      )
+      .cleanDisabled(false)
+      .load();
+
+    flyway.clean();
+    flyway.migrate();
   }
 
 }
