@@ -91,7 +91,7 @@ class QuestionServiceImplTest {
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn(user.getUsername());
     when(repository.findByTechnologyAndDifficulty(any(Technology.class), any(Difficulty.class)))
             .thenReturn(questions);
-    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(true);
+    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(1L);
 
     Question firstQuestion = questions.get(0);
     var result = service.generateQuestion("Example of token", Technology.JAVA, Difficulty.BASICO);
@@ -112,7 +112,7 @@ class QuestionServiceImplTest {
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn(user.getUsername());
     when(repository.findByTechnologyAndDifficulty(any(Technology.class), any(Difficulty.class)))
             .thenReturn(questions);
-    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(false);
+    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(0L);
     when(questionGenerator.createAndSave(any(Technology.class), any(Difficulty.class))).thenReturn(question);
 
     var result = service.generateQuestion("Example of token", Technology.JAVA, Difficulty.BASICO);
@@ -133,7 +133,7 @@ class QuestionServiceImplTest {
     when(repository.findById(anyLong())).thenReturn(Optional.of(question));
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn("Example of token");
     when(userRepository.findByUsername(anyString())).thenReturn(user);
-    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(true);
+    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(1L);
 
     var result = service.answerQuestion("Example of token", question.getId(), Status.CORRETO);
 
@@ -152,7 +152,7 @@ class QuestionServiceImplTest {
     when(repository.findById(anyLong())).thenReturn(Optional.of(question));
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn("Example of token");
     when(userRepository.findByUsername(anyString())).thenReturn(user);
-    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(true);
+    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(1L);
 
     var result = service.answerQuestion("Example of token", question.getId(), Status.INCORRETO);
 
@@ -184,7 +184,7 @@ class QuestionServiceImplTest {
     when(repository.findById(anyLong())).thenReturn(Optional.of(question));
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn(user.getUsername());
     when(userRepository.findByUsername(anyString())).thenReturn(user);
-    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(false);
+    when(repository.questionWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(0L);
 
     Exception exception = assertThrows(ActivityAlreadyAnsweredByUserException.class, () -> {
       service.answerQuestion("Example of token", question.getId(), Status.CORRETO);

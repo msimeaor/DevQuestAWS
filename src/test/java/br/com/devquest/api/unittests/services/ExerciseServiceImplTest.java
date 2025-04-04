@@ -80,7 +80,7 @@ class ExerciseServiceImplTest {
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn(user.getUsername());
     when(repository.findByTechnologyAndDifficulty(any(Technology.class), any(Difficulty.class)))
             .thenReturn(exercises);
-    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(true);
+    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(1L);
 
     Exercise firstExercise = exercises.get(0);
     var result = service.generateExercise("Example of token", Technology.JAVA, Difficulty.BASICO);
@@ -101,7 +101,7 @@ class ExerciseServiceImplTest {
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn(user.getUsername());
     when(repository.findByTechnologyAndDifficulty(any(Technology.class), any(Difficulty.class)))
             .thenReturn(exercises);
-    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(false);
+    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(0L);
     when(exerciseGenerator.createAndSave(any(Technology.class), any(Difficulty.class))).thenReturn(exercise);
 
     var result = service.generateExercise("Example of token", Technology.JAVA, Difficulty.BASICO);
@@ -122,7 +122,7 @@ class ExerciseServiceImplTest {
     when(repository.findById(anyLong())).thenReturn(Optional.of(exercise));
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn(user.getUsername());
     when(userRepository.findByUsername(anyString())).thenReturn(user);
-    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(true);
+    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(1L);
 
     var result = service.answerExercise("Example of token", exercise.getId());
 
@@ -154,7 +154,7 @@ class ExerciseServiceImplTest {
     when(repository.findById(anyLong())).thenReturn(Optional.of(exercise));
     when(tokenJWTDecoder.getUsernameByToken(anyString())).thenReturn(user.getUsername());
     when(userRepository.findByUsername(anyString())).thenReturn(user);
-    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(false);
+    when(repository.exerciseWasNotAnsweredByUser(anyLong(), anyLong())).thenReturn(0L);
 
     Exception exception = assertThrows(ActivityAlreadyAnsweredByUserException.class, () -> {
       service.answerExercise("Example of token", exercise.getId());

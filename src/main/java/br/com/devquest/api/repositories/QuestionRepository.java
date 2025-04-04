@@ -17,9 +17,9 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
   List<Question> findByTechnologyAndDifficulty(@PathVariable("technology") Technology technology,
                                                @PathVariable("difficulty") Difficulty difficulty);
 
-  @Query(value = "SELECT COUNT(*) = 0 FROM User_Question WHERE user_id = :userId AND question_id = :questionId",
+  @Query(value = "SELECT COUNT(*) = 0 FROM user_question WHERE user_id = :userId AND question_id = :questionId",
           nativeQuery = true)
-  boolean questionWasNotAnsweredByUser(@PathVariable("questionId") Long questionId,
+  long questionWasNotAnsweredByUser(@PathVariable("questionId") Long questionId,
                                        @PathVariable("userId") Long userId);
 
 }

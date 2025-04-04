@@ -69,13 +69,13 @@ public class ExerciseServiceImpl implements IExerciseService {
 
   private Exercise searchForExerciseNotAnsweredByUser(List<Exercise> exercises, User user) {
     return exercises.stream()
-            .filter(e -> repository.exerciseWasNotAnsweredByUser(e.getId(), user.getId()))
+            .filter(e -> repository.exerciseWasNotAnsweredByUser(e.getId(), user.getId()) == 1L ? true : false)
             .findFirst()
             .orElse(null);
   }
 
   private boolean userAlreadyAnsweredExercise(Long userId, Long exerciseId) {
-    return !repository.exerciseWasNotAnsweredByUser(exerciseId, userId);
+    return repository.exerciseWasNotAnsweredByUser(exerciseId, userId) == 1L ? false : true;
   }
 
   private void registerAnswer(User user, Exercise exercise) {

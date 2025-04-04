@@ -19,7 +19,7 @@ public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
 
   @Query(value = "SELECT COUNT(*) = 0 FROM user_exercise WHERE exercise_id = :exerciseId AND user_id = :userId",
           nativeQuery = true)
-  boolean exerciseWasNotAnsweredByUser(@PathVariable("exerciseId") Long exerciseId,
+  long exerciseWasNotAnsweredByUser(@PathVariable("exerciseId") Long exerciseId,
                                         @PathVariable("userId") Long userId);
 
 }

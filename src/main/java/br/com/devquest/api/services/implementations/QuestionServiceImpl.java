@@ -70,13 +70,13 @@ public class QuestionServiceImpl implements IQuestionService {
 
   private Question searchForQuestionNotAnsweredByUser(List<Question> questions, User user) {
     return questions.stream()
-            .filter(q -> repository.questionWasNotAnsweredByUser(q.getId(), user.getId()))
+            .filter(q -> repository.questionWasNotAnsweredByUser(q.getId(), user.getId()) == 1L ? true : false)
             .findFirst()
             .orElse(null);
   }
 
   private boolean userAlreadyAnsweredQuestion(Long userId, Long questionId) {
-    return !repository.questionWasNotAnsweredByUser(questionId, userId);
+    return repository.questionWasNotAnsweredByUser(questionId, userId) == 1L ? false : true;
   }
 
   private void registerAnswer(User user, Question question, Status status) {
