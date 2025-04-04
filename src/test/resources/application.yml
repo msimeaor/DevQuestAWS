@@ -1,0 +1,22 @@
+server:
+  port: 8888
+security:
+  jwt:
+    token:
+      secret-key: ${TOKEN_JWT_SECRETKEY}
+      expire-length: ${TOKEN_JWT_EXPIRELENGTH}
+dotenv:
+  enabled: true
+  systemProperties: true
+spring:
+  application:
+    name: api
+  datasource:
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+  devtools:
+    restart:
+      enabled: true
+      exclude: static/**,public/**

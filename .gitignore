@@ -1,0 +1,72 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Maven
+target/
+*.log
+
+# Maven wrapper
+.mvn/
+
+# Docker
+docker-compose.override.yml
+Dockerfile
+**/docker-compose.override.yml
+**/Dockerfile
+.docker/
+
+# Arquivos de configuração local
+.env
+.gitattributes
+HELP.md
+
+# Logs
+logs/
+*.log
+
+# OS específicos
+# Windows
+Thumbs.db
+Desktop.ini
+
+# Arquivos temporários
+*.class
+*.war
+*.ear
+*.jar
+*.tar.gz
+*.zip
+
+# Arquivos de backup
+*.bak
+*.swp
+*~
+
+# JRebel
+rebel.xml
+
+# Testes
+# Testcontainers - arquivos temporários gerados por containers
+test-logs/
+testcontainers/
+
+# Arquivos de banco de dados locais (PostgreSQL)
+*.pgsql
+*.db
+*.sql
+
+# Integração contínua
+# GitLab CI, Travis CI e outros arquivos de integração contínua
+.gitlab-ci.yml
+.travis.yml
+.circleci/
+
+# Arquivos de configuração de IDE (se houver outros IDEs no futuro)
+.vscode/
+
+# PostgreSQL (Arquivos relacionados a volumes do Docker)
+postgres_data/
