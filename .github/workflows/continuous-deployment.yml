@@ -18,22 +18,22 @@ jobs:
         password: ${{secrets.DOCKER_ACCESS_TOKEN}}
 
     - name: Setup Java 21
-    - uses: actions/setup-java@v2
+      uses: actions/setup-java@v2
       with:
         java-version: 21
         distribution: 'temurin'
         cache: maven
 
-#   - name: Building application .jar
-#     working-directory: ./DevQuestAWS
-#     run: mvn clean package
+    - name: Building application .jar
+      working-directory: ./DevQuestAWS
+      run: mvn clean package
 
-#   - name: Docker Compose Build
-#     working-directory: ./DevQuestAWS
-#     run: docker compose build
+    - name: Docker Compose Build
+      working-directory: ./DevQuestAWS
+      run: docker compose build
 
-#   - name: Push to Docker Hub Container Registry
-#     run: |
-#       docker tag ${{secrets.DOCKER_USERNAME}}/devquest:latest ${{secrets.DOCKER_USERNAME}}/devquest:${{github.run_id}}
-#       docker push ${{secrets.DOCKER_USERNAME}}/devquest:latest
-#       docker push ${{secrets.DOCKER_USERNAME}}/devquest:${{github.run_id}}
+    - name: Push to Docker Hub Container Registry
+      run: |
+        docker tag ${{secrets.DOCKER_USERNAME}}/devquest:latest ${{secrets.DOCKER_USERNAME}}/devquest:${{github.run_id}}
+        docker push ${{secrets.DOCKER_USERNAME}}/devquest:latest
+        docker push ${{secrets.DOCKER_USERNAME}}/devquest:${{github.run_id}}
