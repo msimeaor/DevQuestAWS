@@ -34,7 +34,7 @@ services:
     depends_on:
       - db
     ports:
-      - 80:8080
+      - 80:80
     networks:
       - devquest-network
 
