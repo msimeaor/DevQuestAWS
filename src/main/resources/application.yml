@@ -3,8 +3,8 @@ server:
 security:
   jwt:
     token:
-      secret-key: ${TOKEN_JWT_SECRETKEY}
-      expire-length: ${TOKEN_JWT_EXPIRELENGTH}
+      secret-key: s3kr3tK3YY
+      expire-length: 3600000
 dotenv:
   enabled: true
   systemProperties: true
