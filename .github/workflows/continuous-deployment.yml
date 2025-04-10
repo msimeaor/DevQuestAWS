@@ -25,11 +25,11 @@ jobs:
         cache: maven
 
     - name: Building application .jar
-      working-directory: ./DevQuestAWS
+      working-directory: ./
       run: mvn clean package
 
     - name: Docker Compose Build
-      working-directory: ./DevQuestAWS
+      working-directory: ./
       run: docker compose build
 
     - name: Push to Docker Hub Container Registry
