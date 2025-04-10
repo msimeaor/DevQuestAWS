@@ -24,7 +24,7 @@ services:
     env_file:
       - .env
     build: ./
-    working_dir: /DevQuestAWS
+    working_dir: /
     environment:
       TZ: America/Sao_Paulo
       SPRING.DATASOURCE.URL: jdbc:mysql://db:3306/devquest-db?useSSL=false&useTimezone=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
