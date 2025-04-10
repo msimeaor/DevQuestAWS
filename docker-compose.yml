@@ -8,30 +8,36 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: docker
       MYSQL_PASSWORD: docker
-      MYSQL_DATABASE: devquest-aws
+      MYSQL_DATABASE: devquest-db
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_TCP_PORT: 3306
     ports:
-      - "3308:3306"
+      - 3308:3306
     expose:
       - 3306
     networks:
-      - matheus-network
-  devquest-aws:
-    image: msimeaor/devquest-aws
+      - devquest-network
+
+  devquest:
+    image: msimeaor/devquest
     restart: always
+    env_file:
+      - .env
     build: ./
-    working_dir: ./DevQuestAWS
+    working_dir: /DevQuestAWS
     environment:
       TZ: America/Sao_Paulo
-      SPRING.DATASOURCE.URL: jdbc:mysql://db:3306/devquest-aws?useTimezone=true&serverTimezone=UTC
+      SPRING.DATASOURCE.URL: jdbc:mysql://db:3306/devquest-db?useSSL=false&useTimezone=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
       SPRING.DATASOURCE.USERNAME: root
-      SPRING.DATASOURCE.PASSWORD: password
+      SPRING.DATASOURCE.PASSWORD: docker
     command: mvn spring-boot:run
     depends_on:
       - db
     ports:
-      - 80:80
+      - 80:8080
     networks:
-      - matheus-network
+      - devquest-network
+
 networks:
-  matheus-network:
+  devquest-network:
     driver: bridge
