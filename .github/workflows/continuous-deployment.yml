@@ -25,6 +25,10 @@ jobs:
         cache: maven
 
     - name: Building application .jar
+      env:
+        TOKEN_JWT_SECRETKEY: ${{secrets.TOKEN_JWT_SECRETKEY}}
+        TOKEN_JWT_EXPIRELENGTH: ${{secrets.TOKEN_JWT_EXPIRELENGTH}}
+        SPRING_AI_OPENAI_API_KEY: ${{secrets.SPRING_AI_OPENAI_API_KEY}}
       working-directory: ./
       run: mvn clean package
 

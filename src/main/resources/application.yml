@@ -3,12 +3,15 @@ server:
 security:
   jwt:
     token:
-      secret-key: s3kr3tK3YY
-      expire-length: 3600000
+      secret-key: ${TOKEN_JWT_SECRETKEY}
+      expire-length: ${TOKEN_JWT_EXPIRELENGTH}
 dotenv:
   enabled: true
   systemProperties: true
 spring:
+  ai:
+    openai:
+      api-key: ${SPRING_AI_OPENAI_API_KEY}
   application:
     name: api
   datasource:
