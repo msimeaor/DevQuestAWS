@@ -24,12 +24,15 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Debug - List Migrations File
+      run: ls -R src/main/resources/db/migration
+
     - name: Building application .jar
       env:
         TOKEN_JWT_SECRETKEY: ${{secrets.TOKEN_JWT_SECRETKEY}}
         TOKEN_JWT_EXPIRELENGTH: ${{secrets.TOKEN_JWT_EXPIRELENGTH}}
         SPRING_AI_OPENAI_API_KEY: ${{secrets.SPRING_AI_OPENAI_API_KEY}}
-      working-directory: ./DevQuestAWS
+      working-directory: ./
       run: mvn clean package
 
     - name: Docker Compose Build
