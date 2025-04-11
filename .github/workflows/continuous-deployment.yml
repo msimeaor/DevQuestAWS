@@ -25,7 +25,7 @@ jobs:
         cache: maven
 
     - name: Debug - List Migrations File
-      run: ls -R src/main/resources/db/migration
+      run: ls -R src/main/resources
 
     - name: Building application .jar
       env:
