@@ -49,8 +49,6 @@ testcontainers/
 
 # Arquivos de banco de dados locais (PostgreSQL)
 *.pgsql
-*.db
-*.sql
 
 # Integração contínua
 # GitLab CI, Travis CI e outros arquivos de integração contínua
