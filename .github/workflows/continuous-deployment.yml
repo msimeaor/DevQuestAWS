@@ -29,7 +29,7 @@ jobs:
         TOKEN_JWT_SECRETKEY: ${{secrets.TOKEN_JWT_SECRETKEY}}
         TOKEN_JWT_EXPIRELENGTH: ${{secrets.TOKEN_JWT_EXPIRELENGTH}}
         SPRING_AI_OPENAI_API_KEY: ${{secrets.SPRING_AI_OPENAI_API_KEY}}
-      working-directory: ./
+      working-directory: ./DevQuestAWS
       run: mvn clean package
 
     - name: Docker Compose Build
