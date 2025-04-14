@@ -24,9 +24,6 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Debug - List Migrations File
-      run: ls -R src/main/resources
-
     - name: Building application .jar
       env:
         TOKEN_JWT_SECRETKEY: ${{secrets.TOKEN_JWT_SECRETKEY}}

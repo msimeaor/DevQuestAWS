@@ -8,6 +8,9 @@ security:
 dotenv:
   enabled: true
   systemProperties: true
+logging:
+  level:
+    root: TRACE
 spring:
   ai:
     openai:
