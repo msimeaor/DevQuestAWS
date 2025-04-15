@@ -18,8 +18,8 @@ services:
     networks:
       - devquest-network
 
-  devquest:
-    image: msimeaor/devquest
+  devquest-aws:
+    image: msimeaor/devquest-aws
     restart: always
     env_file:
       - .env
@@ -30,13 +30,29 @@ services:
       SPRING.DATASOURCE.URL: jdbc:mysql://db:3306/devquest-db?useSSL=false&useTimezone=true&serverTimezone=UTC&enabledTLSProtocols=TLSv1.2
       SPRING.DATASOURCE.USERNAME: root
       SPRING.DATASOURCE.PASSWORD: docker
+      security.jwt.token.secret-key: ${TOKEN_JWT_SECRETKEY}
+      security.jwt.token.expire-length: ${TOKEN_JWT_EXPIRELENGTH}
     command: mvn spring-boot:run
     depends_on:
       - db
     ports:
-      - 80:80
+      - 80:8080
     networks:
       - devquest-network
+
+  portainer-aws:
+    image: portainer/portainer-ce:latest
+    restart: always
+    ports:
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    networks:
+      - devquest-network
+
+volumes:
+  portainer_data:
 
 networks:
   devquest-network:

@@ -38,7 +38,7 @@ jobs:
 
     - name: Push to Docker Hub Container Registry
       run: |
-        docker tag ${{secrets.DOCKER_USERNAME}}/devquest:latest ${{secrets.DOCKER_USERNAME}}/devquest:${{github.run_id}}
-        docker push ${{secrets.DOCKER_USERNAME}}/devquest:latest
-        docker push ${{secrets.DOCKER_USERNAME}}/devquest:${{github.run_id}}
+        docker tag ${{secrets.DOCKER_USERNAME}}/devquest-aws:latest ${{secrets.DOCKER_USERNAME}}/devquest-aws:${{github.run_id}}
+        docker push ${{secrets.DOCKER_USERNAME}}/devquest-aws:latest
+        docker push ${{secrets.DOCKER_USERNAME}}/devquest-aws:${{github.run_id}}
 # Alteração
