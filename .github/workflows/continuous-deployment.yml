@@ -41,4 +41,4 @@ jobs:
         docker tag ${{secrets.DOCKER_USERNAME}}/devquest-aws:latest ${{secrets.DOCKER_USERNAME}}/devquest-aws:${{github.run_id}}
         docker push ${{secrets.DOCKER_USERNAME}}/devquest-aws:latest
         docker push ${{secrets.DOCKER_USERNAME}}/devquest-aws:${{github.run_id}}
-# Alteração 23
+# Alteração 24
