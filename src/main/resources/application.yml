@@ -8,9 +8,6 @@ security:
 dotenv:
   enabled: true
   systemProperties: true
-logging:
-  level:
-    root: TRACE
 spring:
   ai:
     openai:
@@ -32,7 +29,3 @@ spring:
         hibernate:
           dialect: org.hibernate.dialect.MySQL8Dialect
       show-sql: false
-  devtools:
-    restart:
-      enabled: true
-      exclude: static/**,public/**
