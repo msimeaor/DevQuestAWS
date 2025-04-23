@@ -10,7 +10,7 @@ public class WelcomeController {
 
   @GetMapping()
   public String welcome() {
-    return "testando";
+    return "O workflow está sendo atualizado com sucesso!";
   }
 
 }
